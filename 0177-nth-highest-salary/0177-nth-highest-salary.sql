@@ -3,10 +3,10 @@ BEGIN
   RETURN (
       SELECT DISTINCT salary 
       FROM ( 
-            SELECT salary ,
-            DENSE_RANK () OVER (ORDER BY salary DESC) as r
+            SELECT salary,
+            DENSE_RANK() OVER (ORDER BY salary DESC) as RAN
           FROM employee
-          ) result
-      WHERE r=N
+          ) TBL
+      WHERE RAN=N
   );
 END
