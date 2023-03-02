@@ -5,6 +5,7 @@ WITH TBL1 AS
 (SELECT MIN(ID)
 FROM PERSON
 GROUP BY EMAIL)
+
 DELETE FROM Person
 WHERE id not in (SELECT *
                  FROM TBL1)
