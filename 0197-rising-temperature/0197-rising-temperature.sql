@@ -4,16 +4,12 @@
 
 # 이전 날짜(어제)에 비해 온도가 높은 모든 날짜의 Id를 찾는 SQL 쿼리를 작성하십시오.
 
-# WITH PREV_TEMP AS
-# (SELECT *, LAG(temperature,1) OVER(ORDER BY recordDate) AS PREV_TEMPERATURE,
-#  LAG(recordDate,1) OVER(ORDER BY recordDate) AS PREV_DATE 
-# FROM Weather)
+WITH PREV_TEMP AS
+(SELECT *, LAG(recordDate,1) OVER(ORDER BY recordDate) AS PREV_DATE,
+ LAG(temperature,1) OVER(ORDER BY recordDate) AS PREV_TEMPERATURE
+ FROM Weather)
 
-# SELECT A.ID
-# FROM Weather A JOIN PREV_TEMP B ON A.ID = B.ID
-# WHERE A.TEMPERATURE > B.PREV_TEMPERATURE 
-# AND DATEDIFF(A.recordDate,B.PREV_DATE) = 1 
-
-select w1.id
-from Weather w1 JOIN Weather w2 ON w1.Temperature > w2.Temperature
-and datediff(w1.recordDate, w2.recordDate) = 1;
+SELECT ID
+FROM PREV_TEMP
+WHERE TEMPERATURE > PREV_TEMPERATURE 
+AND DATEDIFF(recordDate,PREV_DATE) = 1 
