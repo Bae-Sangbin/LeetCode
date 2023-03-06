@@ -3,10 +3,9 @@
 #Primary Key : id
 #Foreign key : customerId
 
-SELECT C.name as Customers
-FROM Customers C LEFT JOIN Orders O
-ON C.id = O.customerId
-WHERE O.customerId IS NULL
+SELECT c.NAME AS Customers
+FROM Customers c LEFT JOIN Orders o ON c.ID = o.CUSTOMERID
+WHERE o.ID IS NULL;
 
 
 
