@@ -1,8 +1,8 @@
 # Write your MySQL query statement below
 SELECT DISTINCT TBL.Num as ConsecutiveNums 
 FROM(
-    SELECT Id, Num
-        , Lag(Num) OVER (ORDER BY Id) as 'Lag'  
-        , Lead(Num) OVER (ORDER By Id) as 'Lead' 
+    SELECT id, num,
+        LAG(num) OVER (ORDER BY Id) as 'LAG',
+        LEAD(num) OVER (ORDER By Id) as 'LEAD' 
     FROM Logs) TBL
-WHERE TBL.Num = TBL.Lag AND TBL.Lag = TBL.Lead
+WHERE TBL.num = TBL.LAG AND TBL.LAG = TBL.LEAD
