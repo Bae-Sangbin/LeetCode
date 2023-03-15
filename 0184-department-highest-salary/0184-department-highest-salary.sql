@@ -8,6 +8,6 @@
 SELECT Department, Employee, Salary
 FROM
 (SELECT D.name AS Department, E.name AS Employee, Salary, 
-    RANK() OVER(PARTITION BY D.name ORDER BY Salary DESC) AS RAN
+    RANK() OVER(PARTITION BY DepartmentId ORDER BY Salary DESC) AS RAN
 FROM Employee E JOIN Department D ON E.departmentId = D.id) TBL
 WHERE RAN = 1
