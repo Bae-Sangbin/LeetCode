@@ -1,4 +1,5 @@
-SELECT DISTINCT author_id AS id
+SELECT author_id AS id
 FROM Views
 WHERE author_id = viewer_id
-ORDER BY id ASC
+GROUP BY author_id
+ORDER BY id;
