@@ -2,9 +2,9 @@ select id, visit_date, people
 from (
     select
         *,
-        LEAD(people, 1) OVER(ORDER BY id) as NEXT_PEOPLE,
+        LEAD(people) OVER(ORDER BY id) as NEXT_PEOPLE,
         LEAD(people, 2) OVER(ORDER BY id) as NEXT_PEOPLE2,
-        LAG(people, 1) OVER(ORDER BY id) as PREV_PEOPLE,
+        LAG(people) OVER(ORDER BY id) as PREV_PEOPLE,
         LAG(people, 2) OVER(ORDER BY id) as PREV_PEOPLE2
     FROM stadium
 ) TBL1
