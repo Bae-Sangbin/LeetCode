@@ -2,15 +2,14 @@
 SELECT ID, VISIT_DATE, PEOPLE
 FROM 
 (SELECT *,
-        LAG(people) OVER(ORDER BY ID) PREV_PEOPLE,
-        LAG(people, 2) OVER(ORDER BY ID) PREV_PEOPLE2,
-        LEAD(people) OVER(ORDER BY ID) NEXT_PEOPLE,
-        LEAD(people, 2) OVER(ORDER BY ID) NEXT_PEOPLE2    
+        LAG(people) OVER(ORDER BY visit_date) PREV_PEOPLE,
+        LAG(people, 2) OVER(ORDER BY visit_date) PREV_PEOPLE2,
+        LEAD(people) OVER(ORDER BY visit_date) NEXT_PEOPLE,
+        LEAD(people, 2) OVER(ORDER BY visit_date) NEXT_PEOPLE2    
     FROM STADIUM
 ) TBL
 WHERE PEOPLE >= 100 AND (
     (PREV_PEOPLE >= 100 AND PREV_PEOPLE2 >= 100) OR 
     (NEXT_PEOPLE >= 100 AND PREV_PEOPLE >= 100) OR 
     (NEXT_PEOPLE >= 100 AND NEXT_PEOPLE2 >= 100) 
-    
 )
