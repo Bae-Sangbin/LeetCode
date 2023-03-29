@@ -1,5 +1,5 @@
 # Write your MySQL query statement below
-SELECT T.Request_at AS Day,
+SELECT Request_at AS Day,
 ROUND(SUM(t.Status IN ('cancelled_by_client', 'cancelled_by_driver'))/COUNT(*), 2) 
 AS "Cancellation Rate"
     FROM (SELECT *
