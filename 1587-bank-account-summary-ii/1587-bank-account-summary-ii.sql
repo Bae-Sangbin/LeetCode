@@ -6,5 +6,5 @@ SELECT NAME, BALANCE
 FROM Users U JOIN (SELECT ACCOUNT, SUM(AMOUNT) AS BALANCE
                    FROM Transactions
                    GROUP BY ACCOUNT
-                   HAVING SUM(AMOUNT) > 10000) T ON U.ACCOUNT = T.ACCOUNT
+                   HAVING BALANCE > 10000) T ON U.ACCOUNT = T.ACCOUNT
 
